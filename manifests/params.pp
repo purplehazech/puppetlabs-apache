@@ -88,7 +88,7 @@ class apache::params {
   } elsif $::operatingsystem == 'gentoo' {
     $user                  = 'apache'
     $group                 = 'apache'
-    $apache_name           = 'apache2'
+    $apache_name           = 'apache'
     $apache_service_name   = 'apache2'
     $php_package           = 'virtual/httpd-php'
     $mod_python_package    = 'www-apache/mod_python'
