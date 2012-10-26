@@ -25,7 +25,7 @@ class apache (
 
   service { 'httpd':
     ensure    => running,
-    name      => $apache::params::apache_name,
+    name      => $apache::params::apache_service_name,
     enable    => true,
     subscribe => Package['httpd'],
   }
