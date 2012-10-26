@@ -83,7 +83,7 @@ class apache::params {
     }
     $mod_libs              = {}
     $mod_identifiers       = {}
-  } elsif $::osfamily == 'gentoo' {
+  } elsif $::operatingsystem == 'gentoo' {
     $user                  = 'apache'
     $group                 = 'apache'
     $apache_name           = 'apache2'
