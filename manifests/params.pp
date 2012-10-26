@@ -96,6 +96,7 @@ class apache::params {
     $mod_auth_kerb_package = 'www-apache/mod_auth_kerb'
     $apache_dev            = []
     $vdir                  = '/etc/apache2/vhosts.d/'
+    $ssl_path              = '/etc/ssl/apache2'
     $proxy_modules         = ['proxy', 'proxy_html']
     $mod_packages          = {
       'fcgid'  => 'www-apache/mod_fcgid',

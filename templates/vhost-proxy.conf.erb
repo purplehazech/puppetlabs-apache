@@ -2,8 +2,8 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
 <VirtualHost <%= vhost_name %>:<%= port %>>
   <% if ssl == true %>
   SSLEngine on
-  SSLCertificateFile <%= ssl_path %>/certs/pl.cert
-  SSLCertificateKeyFile <%= ssl_path %>/private/pl.key
+  SSLCertificateFile <%= ssl_path %>/<%= ssl_cert %>
+  SSLCertificateKeyFile <%= ssl_path %>/<%= ssl_key %>
   <% end %>
   ServerName <%= srvname %>
 <% if serveraliases.is_a? Array %>
