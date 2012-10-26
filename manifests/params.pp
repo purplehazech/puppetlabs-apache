@@ -98,8 +98,8 @@ class apache::params {
       'fcgid'  => 'www-apache/mod_fcgid',
       'perl'   => 'www-apache/mod_perl',
       'php5'   => 'virtual/httpd-php',
-      'python' => 'www-apache/mod_python'
-      'wsgi'  => 'www-apache/mod_wsgi'
+      'python' => 'www-apache/mod_python',
+      'wsgi'   => 'www-apache/mod_wsgi'
     }
     $mod_libs              = {}
     $mod_identifiers       = {}
