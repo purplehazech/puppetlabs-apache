@@ -83,6 +83,26 @@ class apache::params {
     }
     $mod_libs              = {}
     $mod_identifiers       = {}
+  } elseif $::osfamily == 'gentoo' {
+    $user                  = 'apache'
+    $group                 = 'apache'
+    $apache_name           = 'apache2'
+    $php_package           = 'virtual/httpd-php'
+    $mod_python_package    = 'www-apache/mod_python'
+    $mod_wsgi_package      = 'www-apache/mod_wsgi'
+    $mod_auth_kerb_package = 'www-apache/mod_auth_kerb'
+    $apache_dev            = []
+    $vdir                  = '/etc/apache/vhosts.d/'
+    $proxy_modules         = ['proxy', 'proxy_html']
+    $mod_packages          = {
+      'fcgid'  => 'www-apache/mod_fcgid',
+      'perl'   => 'www-apache/mod_perl',
+      'php5'   => 'virtual/httpd-php',
+      'python' => 'www-apache/mod_python'
+      'wsgi'  => 'www-apache/mod_wsgi'
+    }
+    $mod_libs              = {}
+    $mod_identifiers       = {}
   } else {
     fail("Class['apache::params']: Unsupported operatingsystem: $operatingsystem")
   }
