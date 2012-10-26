@@ -92,7 +92,7 @@ class apache::params {
     $mod_wsgi_package      = 'www-apache/mod_wsgi'
     $mod_auth_kerb_package = 'www-apache/mod_auth_kerb'
     $apache_dev            = []
-    $vdir                  = '/etc/apache/vhosts.d/'
+    $vdir                  = '/etc/apache2/vhosts.d/'
     $proxy_modules         = ['proxy', 'proxy_html']
     $mod_packages          = {
       'fcgid'  => 'www-apache/mod_fcgid',
