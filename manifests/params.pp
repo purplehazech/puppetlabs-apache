@@ -98,6 +98,12 @@ class apache::params {
     $vdir                  = '/etc/apache2/vhosts.d/'
     $ssl_path              = '/etc/ssl/apache2'
     $proxy_modules         = ['proxy', 'proxy_html']
+    $conf_dir              = '/etc/apache2'
+    $conf_file             = 'httpd.conf'
+    $httpd_dir             = '/usr/lib64/apache2'
+    #$mod_dir               = '/etc/apache2/modules.d'
+    $mod_conf_dir          = '/etc/apache2/modules.d'
+    $vhosts_conf_dir       = '/etc/apache2/vhosts.d'
     $mod_packages          = {
       'fcgid'  => 'www-apache/mod_fcgid',
       'perl'   => 'www-apache/mod_perl',
@@ -106,7 +112,9 @@ class apache::params {
       'wsgi'   => 'www-apache/mod_wsgi'
     }
     $mod_libs              = {}
-    $mod_identifiers       = {}
+    $mod_identifiers       = {
+      'proxy'  => 'mod_proxy'
+    }
   } else {
     fail("Class['apache::params']: Unsupported operatingsystem: $operatingsystem")
   }
