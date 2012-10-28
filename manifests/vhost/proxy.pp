@@ -28,6 +28,7 @@ define apache::vhost::proxy (
     $ssl           = false,
     $ssl_cert      = 'certs/pl.cert',
     $ssl_key       = 'certs/pl.key',
+    $ssl_ca        = '',
     $vhost_name    = '*',
     $no_proxy_uris = []
   ) {
@@ -56,6 +57,4 @@ define apache::vhost::proxy (
     require => Package['httpd'],
     notify  => Service['httpd'],
   }
-
-
 }
