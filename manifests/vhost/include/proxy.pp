@@ -21,7 +21,7 @@ define apache::vhost::include::proxy (
     $template = 'apache/vhost-include-proxy.include.erb'
 ) {
     file { "${proxy_vhost}-${priority}-${name}.include":
-        $path   => "${apache::params::vdir}/${proxy_vhost}-${priority}-${name}.include",
+        path   => "${apache::params::vdir}/${proxy_vhost}-${priority}-${name}.include",
         content => template($template),
         owner   => 'root',
         group   => 'root',
