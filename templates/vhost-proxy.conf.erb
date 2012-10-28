@@ -23,6 +23,8 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
 <% for uri in no_proxy_uris %>
   ProxyPass        <%= uri %> !
 <% end %>
+  Include <%= scope.lookupvar("apache::params::vhosts_conf_dir") %>/<%= name %>*.include
+
   ProxyPass        / <%= dest %>/
   ProxyPassReverse / <%= dest %>/
   ProxyPreserveHost On 
