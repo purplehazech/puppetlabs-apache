@@ -1,4 +1,4 @@
-<% if port != 80 %>
+<% if port != '80' %>
 Listen <%= vhost_name %>:<%= port %>
 <% end %>
 NameVirtualHost <%= vhost_name %>:<%= port %>
