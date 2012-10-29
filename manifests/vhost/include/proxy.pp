@@ -18,6 +18,7 @@ define apache::vhost::include::proxy (
     $location,
     $dest,
     $priority = '10',
+    $url_map = '',
     $template = 'apache/vhost-include-proxy.include.erb'
 ) {
     file { "${proxy_vhost}-${priority}-${name}.include":

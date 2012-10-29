@@ -1,5 +1,9 @@
 ProxyPass <%= location %> <%= dest %>
 <Location <%= location %>>
         ProxyPassReverse /
+        <% if url_map != '' %>
+        SetOutputFilter proxy-html
+        ProxyHTMLURLMap <%= url_map %>
+        <% end %>
 </Location>
 
