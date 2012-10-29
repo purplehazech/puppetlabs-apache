@@ -5,5 +5,7 @@ ProxyPass <%= location %> <%= dest %>
         SetOutputFilter proxy-html
         ProxyHTMLURLMap <%= url_map %>
         <% end %>
+        RequestHeader set X_FORWARDED_PROTO "https"
+        RequestHeader set Accept-Encoding ""
 </Location>
 

@@ -28,8 +28,13 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
 <% end %>
   Include <%= scope.lookupvar("apache::params::vhosts_conf_dir") %>/<%= name %>*.include
 
+  RequestHeader set X_FORWARDED_PROTO "https"
+  RequestHeader set Accept-Encoding ""
+
   ProxyPass        / <%= dest %>/
-  ProxyPassReverse / <%= dest %>/
+  <Location />
+          ProxyPassReverse /
+  </Location>
   ProxyPreserveHost On 
 
   ErrorLog /var/log/<%= scope.lookupvar("apache::params::apache_service_name") %>/<%= name %>_error.log
