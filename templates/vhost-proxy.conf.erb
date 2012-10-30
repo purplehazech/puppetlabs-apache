@@ -31,7 +31,7 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
   RequestHeader set X_FORWARDED_PROTO "https"
   RequestHeader set Accept-Encoding ""
 
-  ProxyPass        / <%= dest %>/
+  ProxyPass        / <%= dest %>
   <Location />
           ProxyPassReverse /
   </Location>
