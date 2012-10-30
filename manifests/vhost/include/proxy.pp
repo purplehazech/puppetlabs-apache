@@ -1,4 +1,4 @@
-# Define: apache::chost::include::proxy
+# Define: apache::vhost::include::proxy
 #
 # Configures a Location include of a proxy vhost
 #
