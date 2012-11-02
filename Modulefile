@@ -1,12 +1,11 @@
 name 'puppetlabs-apache'
 version '0.5.0'
-source 'git://github.com/puppetlabs/puppetlabs-apache.git'
+
 author 'purplehazech'
 license 'Apache 2.0'
+project_page 'https://github.com/purplehazech/puppetlabs-apache'
+source 'git://github.com/purplehazech/puppetlabs-apache.git'
 summary 'Puppet module for Apache'
 description 'Module for Apache configuration'
-project_page 'https://github.com/puppetlabs/puppetlabs-apache'
-
-## Add dependencies, if any:
-dependency 'puppetlabs/firewall', '>= 0.0.4'
-dependency 'puppetlabs/stdlib', '>= 2.2.1'
+dependency 'puppetlabs/firewall', '>=0.0.4'
+dependency 'puppetlabs/stdlib', '>=2.2.1'

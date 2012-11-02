@@ -18,35 +18,34 @@
 # Sample Usage:
 #
 class apache::params {
-
-  $ssl           = true
-  $template      = 'apache/vhost-default.conf.erb'
-  $priority      = '25'
-  $servername    = ''
+  $ssl = true
+  $template = 'apache/vhost-default.conf.erb'
+  $priority = '25'
+  $servername = ''
   $serveraliases = ''
-  $auth          = false
-  $redirect_ssl  = false
-  $options       = 'Indexes FollowSymLinks MultiViews'
-  $override      = 'None'
-  $vhost_name    = '*'
+  $auth = false
+  $redirect_ssl = false
+  $options = 'Indexes FollowSymLinks MultiViews'
+  $override = 'None'
+  $vhost_name = '*'
 
   if $::osfamily == 'redhat' or $::operatingsystem == 'amazon' {
-    $user                  = 'apache'
-    $group                 = 'apache'
-    $apache_name           = 'httpd'
-    $apache_service_name   = 'httpd'
-    $php_package           = 'php'
-    $mod_python_package    = 'mod_python'
-    $mod_wsgi_package      = 'mod_wsgi'
+    $user = 'apache'
+    $group = 'apache'
+    $apache_name = 'httpd'
+    $apache_service_name = 'httpd'
+    $php_package = 'php'
+    $mod_python_package = 'mod_python'
+    $mod_wsgi_package = 'mod_wsgi'
     $mod_auth_kerb_package = 'mod_auth_kerb'
-    $ssl_package           = 'mod_ssl'
-    $apache_dev            = 'httpd-devel'
-    $httpd_dir             = '/etc/httpd'
-    $conf_dir              = "${httpd_dir}/conf"
-    $mod_dir               = "${httpd_dir}/mod.d"
-    $vdir                  = "${httpd_dir}/conf.d"
-    $conf_file             = 'httpd.conf'
-    $mod_packages          = {
+    $ssl_package = 'mod_ssl'
+    $apache_dev = 'httpd-devel'
+    $httpd_dir = '/etc/httpd'
+    $conf_dir = "${httpd_dir}/conf"
+    $mod_dir = "${httpd_dir}/mod.d"
+    $vdir = "${httpd_dir}/conf.d"
+    $conf_file = 'httpd.conf'
+    $mod_packages = {
       'dev'        => 'httpd-devel',
       'fcgid'      => 'mod_fcgid',
       'perl'       => 'mod_perl',
@@ -57,25 +56,25 @@ class apache::params {
       'wsgi'       => 'mod_wsgi',
       'shibboleth' => 'shibboleth',
     }
-    $mod_libs              = {
+    $mod_libs = {
       'php5' => 'libphp5.so',
     }
-    $mod_identifiers       = {
+    $mod_identifiers = {
       'shibboleth' => 'mod_shib',
     }
   } elsif $::osfamily == 'debian' {
-    $user                  = 'www-data'
-    $group                 = 'www-data'
-    $apache_name           = 'apache2'
-    $apache_service_name   = 'apache2'
-    $php_package           = 'libapache2-mod-php5'
-    $mod_python_package    = 'libapache2-mod-python'
-    $mod_wsgi_package      = 'libapache2-mod-wsgi'
+    $user = 'www-data'
+    $group = 'www-data'
+    $apache_name = 'apache2'
+    $apache_service_name = 'apache2'
+    $php_package = 'libapache2-mod-php5'
+    $mod_python_package = 'libapache2-mod-python'
+    $mod_wsgi_package = 'libapache2-mod-wsgi'
     $mod_auth_kerb_package = 'libapache2-mod-auth-kerb'
-    $apache_dev            = ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev']
-    $vdir                  = '/etc/apache2/sites-enabled/'
-    $proxy_modules         = ['proxy', 'proxy_http']
-    $mod_packages          = {
+    $apache_dev = ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev']
+    $vdir = '/etc/apache2/sites-enabled/'
+    $proxy_modules = ['proxy', 'proxy_http']
+    $mod_packages = {
       'dev'    => ['libaprutil1-dev', 'libapr1-dev', 'apache2-prefork-dev'],
       'fcgid'  => 'libapache2-mod-fcgid',
       'perl'   => 'libapache2-mod-perl2',
@@ -83,39 +82,42 @@ class apache::params {
       'python' => 'libapache2-mod-python',
       'wsgi'   => 'libapache2-mod-wsgi',
     }
-    $mod_libs              = {}
-    $mod_identifiers       = {}
+    $mod_libs = {
+    }
+    $mod_identifiers = {
+    }
   } elsif $::operatingsystem == 'gentoo' {
-    $user                  = 'apache'
-    $group                 = 'apache'
-    $apache_name           = 'apache'
-    $apache_service_name   = 'apache2'
-    $php_package           = 'virtual/httpd-php'
-    $mod_python_package    = 'www-apache/mod_python'
-    $mod_wsgi_package      = 'www-apache/mod_wsgi'
+    $user = 'apache'
+    $group = 'apache'
+    $apache_name = 'apache'
+    $apache_service_name = 'apache2'
+    $php_package = 'virtual/httpd-php'
+    $mod_python_package = 'www-apache/mod_python'
+    $mod_wsgi_package = 'www-apache/mod_wsgi'
     $mod_auth_kerb_package = 'www-apache/mod_auth_kerb'
-    $apache_dev            = []
-    $vdir                  = '/etc/apache2/vhosts.d/'
-    $ssl_path              = '/etc/ssl/apache2'
-    $proxy_modules         = ['proxy', 'proxy_html']
-    $conf_dir              = '/etc/apache2'
-    $conf_file             = 'httpd.conf'
-    $httpd_dir             = '/usr/lib64/apache2'
-    #$mod_dir               = '/etc/apache2/modules.d'
-    $mod_conf_dir          = '/etc/apache2/modules.d'
-    $vhosts_conf_dir       = '/etc/apache2/vhosts.d'
-    $mod_packages          = {
+    $apache_dev = []
+    $vdir = '/etc/apache2/vhosts.d/'
+    $ssl_path = '/etc/ssl/apache2'
+    $proxy_modules = ['proxy', 'proxy_html']
+    $conf_dir = '/etc/apache2'
+    $conf_file = 'httpd.conf'
+    $httpd_dir = '/usr/lib64/apache2'
+    # $mod_dir               = '/etc/apache2/modules.d'
+    $mod_conf_dir = '/etc/apache2/modules.d'
+    $vhosts_conf_dir = '/etc/apache2/vhosts.d'
+    $mod_packages = {
       'fcgid'  => 'www-apache/mod_fcgid',
       'perl'   => 'www-apache/mod_perl',
       'php5'   => 'virtual/httpd-php',
       'python' => 'www-apache/mod_python',
       'wsgi'   => 'www-apache/mod_wsgi'
     }
-    $mod_libs              = {}
-    $mod_identifiers       = {
-      'proxy'  => 'mod_proxy'
+    $mod_libs = {
+    }
+    $mod_identifiers = {
+      'proxy' => 'mod_proxy'
     }
   } else {
-    fail("Class['apache::params']: Unsupported operatingsystem: $operatingsystem")
+    fail("Class['apache::params']: Unsupported operatingsystem: ${operatingsystem}")
   }
 }

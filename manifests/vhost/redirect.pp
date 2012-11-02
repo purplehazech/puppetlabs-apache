@@ -1,32 +1,30 @@
-# Define: apache::vhost::redirect
+# == Define: apache::vhost::redirect
 #
 # This class will create a vhost that does nothing more than redirect to a
 # given location
 #
-# Parameters:
-#   $port:
-#       Which port to list on
-#   $dest:
-#       Where to redirect to
-# - $vhost_name
+# === Parameters:
+# [*port*]
+#   Which port to list on
+# [*dest*]
+#   Where to redirect to
+# [*vhost_name*]
 #
-# Actions:
+# === Actions:
 #   Installs apache and creates a vhost
 #
-# Requires:
+# === Requires:
 #
-# Sample Usage:
+# === Sample Usage:
 #
 define apache::vhost::redirect (
-    $port,
-    $dest,
-    $priority      = '10',
-    $serveraliases = '',
-    $template      = 'apache/vhost-redirect.conf.erb',
-    $servername    = $apache::params::servername,
-    $vhost_name    = '*'
-  ) {
-
+  $port,
+  $dest,
+  $priority      = '10',
+  $serveraliases = '',
+  $template      = 'apache/vhost-redirect.conf.erb',
+  $servername    = $apache::params::servername,
+  $vhost_name    = '*') {
   include apache
 
   if $servername == '' {
@@ -45,12 +43,11 @@ define apache::vhost::redirect (
     notify  => Service['httpd'],
   }
 
-  if ! defined(Firewall["0100-INPUT ACCEPT $port"]) {
-    @firewall {
-      "0100-INPUT ACCEPT $port":
-        jump  => 'ACCEPT',
-        dport => '$port',
-        proto => 'tcp'
+  if !defined(Firewall["0100-INPUT ACCEPT ${port}"]) {
+    @firewall { "0100-INPUT ACCEPT ${port}":
+      jump  => 'ACCEPT',
+      dport => '$port',
+      proto => 'tcp'
     }
   }
 }

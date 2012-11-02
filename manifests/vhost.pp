@@ -35,31 +35,28 @@
 #    docroot => '/path/to/docroot',
 #  }
 #
-define apache::vhost(
-    $port,
-    $docroot,
-    $docroot_owner      = 'root',
-    $docroot_group      = 'root',
-    $serveradmin        = false,
-    $configure_firewall = true,
-    $ssl                = $apache::params::ssl,
-    $template           = $apache::params::template,
-    $priority           = $apache::params::priority,
-    $servername         = $apache::params::servername,
-    $serveraliases      = $apache::params::serveraliases,
-    $auth               = $apache::params::auth,
-    $redirect_ssl       = $apache::params::redirect_ssl,
-    $options            = $apache::params::options,
-    $override           = $apache::params::override,
-    $apache_name        = $apache::params::apache_name,
-    $vhost_name         = $apache::params::vhost_name,
-    $logroot            = "/var/log/$apache::params::apache_name",
-    $ensure             = 'present'
-  ) {
-
-  validate_re($ensure, '^(present|absent)$',
-  "${ensure} is not supported for ensure.
-  Allowed values are 'present' and 'absent'.")
+define apache::vhost (
+  $port,
+  $docroot,
+  $docroot_owner      = 'root',
+  $docroot_group      = 'root',
+  $serveradmin        = false,
+  $configure_firewall = true,
+  $ssl                = $apache::params::ssl,
+  $template           = $apache::params::template,
+  $priority           = $apache::params::priority,
+  $servername         = $apache::params::servername,
+  $serveraliases      = $apache::params::serveraliases,
+  $auth               = $apache::params::auth,
+  $redirect_ssl       = $apache::params::redirect_ssl,
+  $options            = $apache::params::options,
+  $override           = $apache::params::override,
+  $apache_name        = $apache::params::apache_name,
+  $vhost_name         = $apache::params::vhost_name,
+  $logroot            = "/var/log/${apache::params::apache_name}",
+  $ensure             = 'present') {
+  validate_re($ensure, '^(present|absent)$', "${ensure} is not supported for ensure.
+    Allowed values are 'present' and 'absent'.")
 
   include apache
 
@@ -82,7 +79,7 @@ define apache::vhost(
 
   # This ensures that the docroot exists
   # But enables it to be specified across multiple vhost resources
-  if ! defined(File[$docroot]) {
+  if !defined(File[$docroot]) {
     file { $docroot:
       ensure => directory,
       owner  => $docroot_owner,
@@ -91,10 +88,8 @@ define apache::vhost(
   }
 
   # Same as above, but for logroot
-  if ! defined(File[$logroot]) {
-    file { $logroot:
-      ensure => directory,
-    }
+  if !defined(File[$logroot]) {
+    file { $logroot: ensure => directory, }
   }
 
   file { "${priority}-${name}.conf":
@@ -104,21 +99,16 @@ define apache::vhost(
     owner   => 'root',
     group   => 'root',
     mode    => '0755',
-    require => [
-      Package['httpd'],
-      File[$docroot],
-      File[$logroot],
-    ],
+    require => [Package['httpd'], File[$docroot], File[$logroot],],
     notify  => Service['httpd'],
   }
 
   if $configure_firewall {
-    if ! defined(Firewall["0100-INPUT ACCEPT $port"]) {
-      @firewall {
-        "0100-INPUT ACCEPT $port":
-          action => 'accept',
-          dport  => $port,
-          proto  => 'tcp'
+    if !defined(Firewall["0100-INPUT ACCEPT ${port}"]) {
+      @firewall { "0100-INPUT ACCEPT ${port}":
+        action => 'accept',
+        dport  => $port,
+        proto  => 'tcp'
       }
     }
   }
