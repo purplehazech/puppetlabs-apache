@@ -25,7 +25,6 @@ class apache::params {
   $serveraliases = ''
   $auth          = false
   $redirect_ssl  = false
-  $ssl_path      = '/etc/ssl'
   $options       = 'Indexes FollowSymLinks MultiViews'
   $override      = 'None'
   $vhost_name    = '*'
@@ -40,6 +39,7 @@ class apache::params {
     $mod_wsgi_package      = 'mod_wsgi'
     $mod_auth_kerb_package = 'mod_auth_kerb'
     $ssl_package           = 'mod_ssl'
+    $ssl_path              = '/etc/ssl'
     $apache_dev            = 'httpd-devel'
     $httpd_dir             = '/etc/httpd'
     $conf_dir              = "${httpd_dir}/conf"
@@ -68,6 +68,7 @@ class apache::params {
     $group                 = 'www-data'
     $apache_name           = 'apache2'
     $apache_service_name   = 'apache2'
+    $ssl_path              = '/etc/ssl'
     $php_package           = 'libapache2-mod-php5'
     $mod_python_package    = 'libapache2-mod-python'
     $mod_wsgi_package      = 'libapache2-mod-wsgi'
