@@ -103,7 +103,7 @@ class apache::params {
     $ssl_path              = '/etc/ssl/apache2'
     $proxy_modules         = ['proxy', 'proxy_html']
     $conf_dir              = '/etc/apache2'
-    $conf_file             = 'httpd.conf'
+    # $conf_file             = 'httpd.conf'
     $httpd_dir             = '/usr/lib64/apache2'
     # $mod_dir               = '/etc/apache2/modules.d'
     $mod_conf_dir          = '/etc/apache2/modules.d'
