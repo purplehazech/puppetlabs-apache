@@ -1,7 +1,7 @@
 name 'purplehazech-apache'
-version '0.5.0'
-
-author ''
+version '0.5.0-rc1'
+source 'git://github.com/puppetlabs/puppetlabs-apache.git'
+author 'puppetlabs'
 license 'Apache 2.0'
 project_page 'https://github.com/purplehazech/puppetlabs-apache'
 source 'git://github.com/purplehazech/puppetlabs-apache.git'
