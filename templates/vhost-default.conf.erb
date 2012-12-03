@@ -21,6 +21,7 @@ NameVirtualHost <%= vhost_name %>:<%= port %>
     Order allow,deny
     allow from all
   </Directory>
+  Include <%= scope.lookupvar("apache::params::vhosts_conf_dir") %>/<%= name %>*.include
   ErrorLog <%= logroot %>/<%= name %>_error.log
   LogLevel warn
   CustomLog <%= logroot %>/<%= name %>_access.log combined
