@@ -2,7 +2,7 @@
 #
 define apache::vhost::include::env (
   $vhost_name,
-  $value,
+  $envs,
   $priority = 10,
   $template = 'apache/vhost-include-env.include.erb') {
   file { "${vhost_name}-${priority}-${name}.include":
